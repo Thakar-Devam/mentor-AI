@@ -9,98 +9,98 @@ interface LandingProps {
 export function Landing({ onCareer, onGuide, onScheme }: LandingProps) {
   return (
     <div>
-    <div className="px-10 py-[90px] border-b border-pb md:px-5 md:py-[70px]">
+      <div className="px-10 py-[90px] border-b border-pb md:px-5 md:py-[70px]">
 
-  {/* LABEL */}
-  <div className="font-display text-[11px] font-bold tracking-[0.22em] uppercase text-mid mb-8 flex items-center gap-3 before:content-[''] before:w-7 before:h-[1.5px] before:bg-pb3">
-    India's First AI Career Mentor — 100% Free
-  </div>
-
-  {/* HEADING */}
-  <h1 className="font-display text-[clamp(72px,13vw,180px)] font-black leading-[0.9] tracking-[-0.01em] uppercase text-ch md:text-[clamp(54px,15vw,90px)]">
-    <span className="block">Your Career</span>
-    <span className="block text-acid [text-shadow:-2px_2px_0_var(--color-ch)]">MENTOR</span>
-    <span className="block [-webkit-text-stroke:2.5px_var(--color-ch)] text-transparent">IS HERE.</span>
-  </h1>
-
-  {/* SUBTEXT */}
-  <p className="mt-10 text-[15px] text-mid leading-[1.9] max-w-[520px]">
-    No expensive coaching. No connections. No confusion.<br />
-    <strong className="text-ch font-semibold">
-      Tell MentorAI your goal — get your complete career path.
-    </strong>
-  </p>
-
-  {/* BIG FEATURE STATS (UNIQUE STYLE) */}
-  <div className="mt-16 border-t border-pb pt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
-
-    {[
-      ["10", "STAGE SYSTEM"],
-      ["3", "TOOLS IN ONE"],
-      ["₹0", "FOREVER FREE"],
-    ].map(([n, l]) => (
-      <div
-        key={l}
-        className="relative bg-white p-6 rounded-xl border border-pb hover:shadow-xl transition-all group overflow-hidden"
-      >
-        {/* BIG BACKGROUND NUMBER */}
-        <div className="absolute right-4 top-0 text-[120px] font-display font-black text-pb opacity-30 leading-none pointer-events-none group-hover:scale-110 transition">
-          {n}
+        {/* LABEL */}
+        <div className="font-display text-[11px] font-bold tracking-[0.22em] uppercase text-mid mb-8 flex items-center gap-3 before:content-[''] before:w-7 before:h-[1.5px] before:bg-pb3">
+          India's First AI Career Mentor — 100% Free
         </div>
 
-        {/* CONTENT */}
-        <div className="relative z-10">
-          <div className="font-display text-[32px] font-black text-ch mb-2">
-            {n}
-          </div>
-          <div className="font-display text-[11px] font-bold tracking-[0.18em] uppercase text-mid">
-            {l}
-          </div>
+        {/* HEADING */}
+        <h1 className="font-display text-[clamp(72px,13vw,180px)] font-black leading-[0.9] tracking-[-0.01em] uppercase text-ch md:text-[clamp(54px,15vw,90px)]">
+          <span className="block">Your Career</span>
+          <span className="block text-acid [text-shadow:-2px_2px_0_var(--color-ch)]">MENTOR</span>
+          <span className="block [-webkit-text-stroke:2.5px_var(--color-ch)] text-transparent">IS HERE.</span>
+        </h1>
+
+        {/* SUBTEXT */}
+        <p className="mt-10 text-[15px] text-mid leading-[1.9] max-w-[520px]">
+          No expensive coaching. No connections. No confusion.<br />
+          <strong className="text-ch font-semibold">
+            Tell MentorAI your goal — get your complete career path.
+          </strong>
+        </p>
+
+        {/* BIG FEATURE STATS (UNIQUE STYLE) */}
+        <div className="mt-16 border-t border-pb pt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
+
+          {[
+            ["10", "STAGE SYSTEM"],
+            ["3", "TOOLS IN ONE"],
+            ["₹0", "FOREVER FREE"],
+          ].map(([n, l]) => (
+            <div
+              key={l}
+              className="relative bg-white p-6 rounded-xl border border-pb hover:shadow-xl transition-all group overflow-hidden"
+            >
+              {/* BIG BACKGROUND NUMBER */}
+              <div className="absolute right-4 top-0 text-[120px] font-display font-black text-pb opacity-30 leading-none pointer-events-none group-hover:scale-110 transition">
+                {n}
+              </div>
+
+              {/* CONTENT */}
+              <div className="relative z-10">
+                <div className="font-display text-[32px] font-black text-ch mb-2">
+                  {n}
+                </div>
+                <div className="font-display text-[11px] font-bold tracking-[0.18em] uppercase text-mid">
+                  {l}
+                </div>
+              </div>
+
+            </div>
+          ))}
+
         </div>
 
       </div>
-    ))}
+      <div className="programs-strip mb-10 flex border-b-[1.5px] border-slate-300 overflow-x-auto md:flex-col bg-white">
+        {[
+          { type: "Full Platform", name: "Career Mentor", fn: onCareer, color: "text-ch" },
+          { type: "Stream & College", name: "Post-12th Guide", fn: onGuide, color: "text-poppy" },
+          { type: "Government Support", name: "Scheme Finder", fn: onScheme, color: "text-royal" },
+          { type: "Inside Career", name: "Peer Matching", fn: onCareer, color: "text-ch" },
+          { type: "Inside Career", name: "AI Mock Interview", fn: onCareer, color: "text-ch" },
+        ].map((p, i) => (
+          <button
+            key={i}
+            className={`prog-item flex-1 min-w-[160px] px-6 py-7  border-r-[1.5px] border-slate-300 cursor-pointer transition-all duration-300 relative overflow-hidden group md:border-r-0 md:border-b-[1.5px] ${p.color} text-left flex flex-col hover:shadow-md`}
+            onClick={p.fn}
+            type="button"
+          >
+            {/* Type label */}
+            <div className={`prog-type font-display text-[10px] font-bold tracking-[0.18em] uppercase mb-2 transition-colors duration-300 ${p.color === 'text-ch' ? 'text-slate-700' : 'text-slate-500'}`}>
+              {p.type}
+            </div>
 
-  </div>
+            {/* Program name */}
+            <div className="prog-name font-display text-xl font-black uppercase tracking-[0.04em] leading-none text-slate-900 transition-colors duration-300">
+              {p.name}
+            </div>
 
-</div>
- <div className="programs-strip mb-10 flex border-b-[1.5px] border-slate-300 overflow-x-auto md:flex-col bg-white">
-    {[
-      { type: "Full Platform", name: "Career Mentor", fn: onCareer, color: "text-ch" },
-      { type: "Stream & College", name: "Post-12th Guide", fn: onGuide, color: "text-poppy" },
-      { type: "Government Support", name: "Scheme Finder", fn: onScheme, color: "text-royal" },
-      { type: "Inside Career", name: "Peer Matching", fn: onCareer, color: "text-ch" },
-      { type: "Inside Career", name: "AI Mock Interview", fn: onCareer, color: "text-ch" },
-    ].map((p, i) => (
-      <button
-        key={i}
-        className={`prog-item flex-1 min-w-[160px] px-6 py-7  border-r-[1.5px] border-slate-300 cursor-pointer transition-all duration-300 relative overflow-hidden group md:border-r-0 md:border-b-[1.5px] ${p.color} text-left flex flex-col hover:shadow-md`}
-        onClick={p.fn}
-        type="button"
-      >
-        {/* Type label */}
-        <div className={`prog-type font-display text-[10px] font-bold tracking-[0.18em] uppercase mb-2 transition-colors duration-300 ${p.color === 'text-ch' ? 'text-slate-700' : 'text-slate-500'}`}>
-          {p.type}
-        </div>
-        
-        {/* Program name */}
-        <div className="prog-name font-display text-xl font-black uppercase tracking-[0.04em] leading-none text-slate-900 transition-colors duration-300">
-          {p.name}
-        </div>
-        
-        {/* Explore button - always visible with slight scale */}
-        <div className="prog-arrow flex items-center gap-1.5 text-xs font-bold mt-4 opacity-60 transition-all duration-300 group-hover:opacity-100 group-hover:scale-110 group-hover:translate-x-1 group-hover:-translate-y-1 origin-left">
-          <span>Explore</span>
-          <svg className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M7 7h10v10M7 17L17 7" />
-          </svg>
-        </div>
-        
-        {/* Bottom accent line */}
-        <div className="absolute bottom-0 left-0 h-[3px] w-0 transition-all duration-500 ease-out bg-gradient-to-r from-slate-900 to-slate-700 group-hover:w-full" />
-      </button>
-    ))}
-  </div>
+            {/* Explore button - always visible with slight scale */}
+            <div className="prog-arrow flex items-center gap-1.5 text-xs font-bold mt-4 opacity-60 transition-all duration-300 group-hover:opacity-100 group-hover:scale-110 group-hover:translate-x-1 group-hover:-translate-y-1 origin-left">
+              <span>Explore</span>
+              <svg className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M7 7h10v10M7 17L17 7" />
+              </svg>
+            </div>
+
+            {/* Bottom accent line */}
+            <div className="absolute bottom-0 left-0 h-[3px] w-0 transition-all duration-500 ease-out bg-gradient-to-r from-slate-900 to-slate-700 group-hover:w-full" />
+          </button>
+        ))}
+      </div>
       <Ticker />
 
       <div className="section-block border-b-[1.5px] border-pb px-10 py-[72px] md:px-5 md:py-[52px]">
