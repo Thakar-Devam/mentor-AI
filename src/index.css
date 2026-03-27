@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+@theme {
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Barlow Condensed", sans-serif;
+
+  --color-cream: #F4F2EC;
+  --color-white: #FAFAF7;
+  --color-ch: #1A1917;
+  --color-ch2: #2E2D2A;
+  --color-ch3: #444340;
+  --color-mid: #888580;
+  --color-pale: #C8C5BE;
+  --color-pb: #E2DFD8;
+  --color-pb2: #D0CCC4;
+  --color-pb3: #B8B4AC;
+  --color-acid: #C5FF00;
+  --color-poppy: #FF2D2D;
+  --color-royal: #1A3FFF;
+  --color-citrus: #FF8C00;
+  --color-mint: #00D68F;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-cream text-ch font-sans antialiased min-h-screen;
+  }
+}
+
+@layer components {
+  .disp {
+    @apply font-display;
+  }
+
+  .btn-primary {
+    @apply bg-ch text-white font-display font-bold tracking-widest uppercase border-2 border-ch px-8 py-3 text-[15px] transition-all cursor-pointer hover:bg-white hover:text-ch disabled:opacity-35 disabled:cursor-not-allowed;
+  }
+
+  /* ✅ FIXED: was missing, caused Next/Back buttons to not work */
+  .btn-sec {
+    @apply bg-transparent text-ch font-display font-bold tracking-widest uppercase border-2 border-pb px-8 py-3 text-[15px] transition-all cursor-pointer hover:border-ch hover:text-ch;
+  }
+
+  .btn-ghost {
+    @apply bg-transparent border-[1.5px] border-pb2 text-mid text-[13px] font-medium px-5 py-2.5 transition-all cursor-pointer hover:text-ch hover:border-ch3;
+  }
+
+  .inp {
+    @apply bg-white border-[1.5px] border-pb2 px-4 py-3 text-ch text-sm outline-none w-full transition-all placeholder:text-pale focus:border-ch;
+  }
+
+  /* ✅ FIXED: was missing, used in Onboarding step 1 */
+  .input-main {
+    @apply bg-white border-[1.5px] border-pb2 px-4 py-3 text-ch text-sm outline-none w-full transition-all placeholder:text-pale focus:border-ch font-sans;
+  }
+
+  select.inp {
+    @apply cursor-pointer appearance-none pr-9;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23888580' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+  }
+}
+
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.ticker-inner {
+  display: flex;
+  width: max-content;
+  animation: ticker 30s linear infinite;
+}
+
+.ticker-inner:hover {
+  animation-play-state: paused;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-up {
+  animation: fadeUp .55s cubic-bezier(.22,1,.36,1) forwards;
+}
