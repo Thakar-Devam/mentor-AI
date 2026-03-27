@@ -9,36 +9,61 @@ interface LandingProps {
 export function Landing({ onCareer, onGuide, onScheme }: LandingProps) {
   return (
     <div>
-      <div className="hero px-10 py-[72px] border-b-[1.5px] border-pb md:px-5 md:py-[52px]">
-        <div className="hero-label font-display text-[11px] font-bold tracking-[0.22em] uppercase text-mid mb-6 flex items-center gap-3 before:content-[''] before:w-7 before:h-[1.5px] before:bg-pb3">
-          India's First AI Career Mentor — 100% Free
+    <div className="px-10 py-[90px] border-b border-pb md:px-5 md:py-[70px]">
+
+  {/* LABEL */}
+  <div className="font-display text-[11px] font-bold tracking-[0.22em] uppercase text-mid mb-8 flex items-center gap-3 before:content-[''] before:w-7 before:h-[1.5px] before:bg-pb3">
+    India's First AI Career Mentor — 100% Free
+  </div>
+
+  {/* HEADING */}
+  <h1 className="font-display text-[clamp(72px,13vw,180px)] font-black leading-[0.9] tracking-[-0.01em] uppercase text-ch md:text-[clamp(54px,15vw,90px)]">
+    <span className="block">Your Career</span>
+    <span className="block text-acid [text-shadow:-2px_2px_0_var(--color-ch)]">MENTOR</span>
+    <span className="block [-webkit-text-stroke:2.5px_var(--color-ch)] text-transparent">IS HERE.</span>
+  </h1>
+
+  {/* SUBTEXT */}
+  <p className="mt-10 text-[15px] text-mid leading-[1.9] max-w-[520px]">
+    No expensive coaching. No connections. No confusion.<br />
+    <strong className="text-ch font-semibold">
+      Tell MentorAI your goal — get your complete career path.
+    </strong>
+  </p>
+
+  {/* BIG FEATURE STATS (UNIQUE STYLE) */}
+  <div className="mt-16 border-t border-pb pt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
+
+    {[
+      ["10", "STAGE SYSTEM"],
+      ["3", "TOOLS IN ONE"],
+      ["₹0", "FOREVER FREE"],
+    ].map(([n, l]) => (
+      <div
+        key={l}
+        className="relative bg-white p-6 rounded-xl border border-pb hover:shadow-xl transition-all group overflow-hidden"
+      >
+        {/* BIG BACKGROUND NUMBER */}
+        <div className="absolute right-4 top-0 text-[120px] font-display font-black text-pb opacity-30 leading-none pointer-events-none group-hover:scale-110 transition">
+          {n}
         </div>
-        <h1 className="hero-h1 font-display text-[clamp(80px,14vw,196px)] font-black leading-[0.88] tracking-[-0.01em] uppercase text-ch md:text-[clamp(64px,17vw,96px)]">
-          <span className="block">Your Career</span>
-          <span className="block text-acid [text-shadow:-2px_2px_0_var(--color-ch)]">MENTOR</span>
-          <span className="block [-webkit-text-stroke:2.5px_var(--color-ch)] text-transparent">IS HERE.</span>
-        </h1>
-        <div className="hero-bottom flex items-end justify-between mt-9 pt-7 border-t-[1.5px] border-pb flex-wrap gap-5 md:flex-col">
-          <p className="hero-sub text-[15px] text-mid leading-[1.8] max-w-[400px]">
-            No expensive coaching. No connections. No confusion.<br />
-            <strong className="text-ch font-semibold">Tell MentorAI your goal — get your complete career path.</strong>
-          </p>
-          <div className="hero-right flex items-end gap-10 flex-wrap md:gap-6">
-            {[
-              ["10", "Stage System"],
-              ["3", "Tools in One"],
-              ["₹0", "Forever Free"],
-            ].map(([n, l]) => (
-              <div key={l} className="hero-stat text-center">
-                <div className="hstat-n font-display text-[52px] font-black leading-none text-ch md:text-[40px]">{n}</div>
-                <div className="hstat-l font-display text-[11px] font-bold tracking-[0.14em] uppercase text-mid">{l}</div>
-              </div>
-            ))}
-            <button className="btn-primary text-base px-10 py-3.5" onClick={onCareer}>Start Free →</button>
+
+        {/* CONTENT */}
+        <div className="relative z-10">
+          <div className="font-display text-[32px] font-black text-ch mb-2">
+            {n}
+          </div>
+          <div className="font-display text-[11px] font-bold tracking-[0.18em] uppercase text-mid">
+            {l}
           </div>
         </div>
-      </div>
 
+      </div>
+    ))}
+
+  </div>
+
+</div>
       <div className="programs-strip flex border-b-[1.5px] border-pb overflow-x-auto md:flex-col">
         {[
           { type: "Full Platform", name: "Career Mentor", fn: onCareer, color: "text-ch" },

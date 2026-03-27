@@ -41,83 +41,147 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-cream">
-      <nav className="nav sticky top-0 z-200 bg-cream/97 backdrop-blur-md border-b-[1.5px] border-pb h-16 flex items-center px-10 justify-between md:px-5">
-        <button className="logo-btn font-display font-black text-[22px] tracking-widest cursor-pointer text-ch border-none bg-none uppercase" onClick={goHome}>
-          MENTOR<span className="logo-br text-ch3">[</span><em className="not-italic">AI</em><span className="logo-br text-ch3">]</span>
+      <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-6xl">
+
+  <div className="flex items-center justify-between px-6 py-3 rounded-2xl 
+  bg-white/70 backdrop-blur-xl border border-white/30 shadow-lg">
+
+    {/* LOGO */}
+    <button
+      onClick={goHome}
+      className="font-display font-black text-[20px] tracking-widest uppercase text-ch"
+    >
+      MENTOR <span className="text-acid">AI</span>
+    </button>
+
+    {/* NAV LINKS */}
+    <div className="hidden md:flex items-center gap-2 bg-white/60 backdrop-blur-md px-2 py-1 rounded-xl border border-white/30">
+
+      {NAV_MODES.map((m) => (
+        <button
+          key={m.id}
+          onClick={() => setScreen(m.id)}
+          className={`px-4 py-2 text-xs font-display font-bold uppercase tracking-widest rounded-lg transition-all
+          ${
+            screen === m.id
+              ? "bg-ch text-cream shadow"
+              : "text-mid hover:text-ch hover:bg-white/70"
+          }`}
+        >
+          {m.label}
         </button>
-        <div className="nav-links flex gap-0 md:hidden">
-          {NAV_MODES.map((m) => (
-            <button
-              key={m.id}
-              className={`nav-link bg-none border-none text-mid font-display text-xs font-bold px-4.5 h-16 transition-all whitespace-nowrap tracking-widest uppercase cursor-pointer border-r-[1.5px] border-pb flex items-center first:border-l-[1.5px] hover:text-ch hover:bg-white ${
-                screen === m.id ? "active bg-ch text-cream" : ""
-              }`}
-              onClick={() => setScreen(m.id)}
-            >
-              {m.label}
-            </button>
-          ))}
-        </div>
-        <div className="nav-right flex items-center gap-4">
-          <div className="nav-status font-display text-[11px] font-bold tracking-[0.14em] uppercase text-mid flex items-center gap-1.75">
-            <div className="nav-dot w-1.75 h-1.75 bg-acid rounded-full border-2 border-ch animate-pulse" />
-            Free Beta
-          </div>
-          {screen === "landing" && (
-            <button className="nav-cta bg-ch text-cream border-none font-display font-bold text-[13px] tracking-widest uppercase px-5.5 py-2.5 transition-colors cursor-pointer hover:bg-acid hover:text-ch" onClick={() => setScreen("career")}>
-              Get My Plan →
-            </button>
-          )}
-        </div>
-      </nav>
+      ))}
 
-      <main className="flex-1">
-        {screen === "landing" && <Landing onCareer={() => setScreen("career")} onGuide={() => setScreen("guide")} onScheme={() => setScreen("schemes")} />}
-        {screen === "career" && <Onboarding onDone={handleOnboard} onBack={goHome} />}
-        {screen === "loading" && (
-          <div className="loading-screen flex flex-col items-center justify-center p-25 px-10 text-center min-h-[70vh]">
-            <div className="ls-ic-wrap relative w-16 h-16 mb-7">
-              <div className="ls-spin absolute inset-0 border-2 border-pb border-t-ch rounded-full animate-spin" />
-              <div className="ls-ic absolute inset-0 flex items-center justify-center text-[26px]">🧭</div>
-            </div>
-            <div className="ls-title font-display text-[36px] font-black uppercase tracking-[0.02em] mb-2 text-ch">Building your personal plan…</div>
-            <div className="ls-sub text-mid text-[13px] leading-[1.8] max-w-90 mb-10">AI is analysing your goal, situation, and skills to build a plan that fits you — not a generic template. 30–60 seconds.</div>
-          </div>
-        )}
-        {screen === "error" && (
-          <div className="err-wrap text-center p-25 px-10 max-w-115 mx-auto">
-            <div className="err-icon text-[44px] mb-4 block">⚠️</div>
-            <div className="err-title font-display text-[40px] font-black uppercase tracking-[0.02em] mb-2.5">Something went wrong</div>
-            <div className="err-msg text-mid text-sm leading-[1.8] mb-6.5">{errMsg}</div>
-            <button className="btn-primary" onClick={() => setScreen("career")}>
-              ← Try Again
-            </button>
-          </div>
-        )}
-        {screen === "dashboard" && planData && <Dashboard data={planData} profile={profile} onReset={() => setScreen("career")} />}
-        {screen === "guide" && <Post12thGuide onBack={goHome} />}
-        {screen === "schemes" && <SchemeFinder onBack={goHome} />}
-      </main>
+    </div>
 
-      <footer className="footer border-t-[1.5px] border-pb p-7 px-10 flex items-center justify-between flex-wrap gap-3.5 bg-cream md:px-4.5 md:py-5">
-        <div className="footer-logo font-display font-black text-[18px] uppercase tracking-widest">
-          MENTOR<span className="footer-br text-ch3">[</span>
-          <em className="not-italic">AI</em>
-          <span className="footer-br text-ch3">]</span>
-        </div>
-        <div className="footer-text text-[11px] text-pale tracking-widest uppercase">Built for students who had no mentor · India's free AI career mentor · Powered by Gemini AI</div>
-        <div className="footer-links flex gap-5">
-          <a href="#" className="text-[11px] text-pale no-underline transition-colors uppercase tracking-[0.08em] hover:text-ch">
-            About
-          </a>
-          <a href="#" className="text-[11px] text-pale no-underline transition-colors uppercase tracking-[0.08em] hover:text-ch">
-            Privacy
-          </a>
-          <a href="#" className="text-[11px] text-pale no-underline transition-colors uppercase tracking-[0.08em] hover:text-ch">
-            Share
-          </a>
-        </div>
-      </footer>
+    {/* CONTACT BUTTON */}
+    <button
+      // onClick={() => setScreen("contact")}
+      className="border px-5 py-2 rounded-xl text-xs font-display font-bold uppercase tracking-widest transition-all bg-ch text-cream hover:bg-acid hover:text-ch"
+    >
+      Contact Us
+    </button>
+
+  </div>
+
+</nav>
+      <main className="flex-1 pt-[96px] md:pt-[80px]">
+  <div className="space-y-10 md:space-y-8">
+
+    {screen === "landing" && (
+      <Landing
+        onCareer={() => setScreen("career")}
+        onGuide={() => setScreen("guide")}
+        onScheme={() => setScreen("schemes")}
+      />
+    )}
+
+    {screen === "career" && (
+      <Onboarding
+        onDone={handleOnboard}
+        onBack={goHome}
+      />
+    )}
+
+    {screen === "loading" && (
+      <div className="loading-screen flex flex-col items-center justify-center px-10 py-24 text-center min-h-[70vh]">
+        ...
+      </div>
+    )}
+
+    {screen === "error" && (
+      <div className="text-center px-10 py-24 max-w-[460px] mx-auto">
+        ...
+      </div>
+    )}
+
+    {screen === "dashboard" && planData && (
+      <Dashboard
+        data={planData}
+        profile={profile}
+        onReset={() => setScreen("career")}
+      />
+    )}
+
+    {screen === "guide" && <Post12thGuide onBack={goHome} />}
+    {screen === "schemes" && <SchemeFinder onBack={goHome} />}
+
+  </div>
+</main>
+
+      <footer className="bg-ch text-cream border-t border-white/10 px-10 py-14 md:px-5">
+
+  <div className="max-w-7xl mx-auto flex gap-16 flex-wrap">
+
+    {/* LEFT - BRAND (BIG + DOMINANT) */}
+    <div className="flex-1 min-w-[280px]">
+      <h1 className="font-display text-[clamp(48px,6vw,88px)] leading-[0.85] font-black uppercase tracking-tight whitespace-nowrap">
+        MENTOR <span className="text-acid">AI</span>
+      </h1>
+
+      <p className="text-white/40 text-sm mt-4 max-w-[320px] leading-relaxed">
+        Built for students who had no mentor. India's free AI career mentor platform.
+      </p>
+    </div>
+
+    {/* CENTER - FEATURES */}
+    <div className="min-w-[220px] flex flex-col">
+      <h3 className="font-display text-base font-bold uppercase tracking-[0.12em] mb-4">
+        Features
+      </h3>
+
+      <div className="flex flex-col gap-2 text-sm text-white/70">
+        <a href="#" className="hover:text-acid transition">AI Career Mentor</a>
+        <a href="#" className="hover:text-acid transition">Post-12th Guide</a>
+        <a href="#" className="hover:text-acid transition">Scheme Finder</a>
+        <a href="#" className="hover:text-acid transition">Mock Interview</a>
+        <a href="#" className="hover:text-acid transition">Peer Matching</a>
+      </div>
+    </div>
+
+    {/* RIGHT - COMPANY LINKS */}
+    <div className="min-w-[180px] flex flex-col">
+      <h3 className="font-display text-base font-bold uppercase tracking-[0.12em] mb-4">
+        Company
+      </h3>
+
+      <div className="flex flex-col gap-2 text-sm text-white/70">
+        <a href="#" className="hover:text-acid transition">About</a>
+        <a href="#" className="hover:text-acid transition">Privacy Policy</a>
+        <a href="#" className="hover:text-acid transition">Contact</a>
+        <a href="#" className="hover:text-acid transition">Share</a>
+      </div>
+    </div>
+
+  </div>
+
+  {/* BOTTOM */}
+  <div className="mt-10 pt-5 border-t border-white/10 flex justify-between text-xs text-white/30">
+    <span>© 2026 MentorAI</span>
+    <span>Powered by Gemini AI</span>
+  </div>
+
+</footer>
     </div>
   );
 }
