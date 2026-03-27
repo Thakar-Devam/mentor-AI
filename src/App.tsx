@@ -51,7 +51,7 @@ export default function App() {
       onClick={goHome}
       className="font-display font-black text-[20px] tracking-widest uppercase text-ch"
     >
-      MENTOR <span className="text-acid">AI</span>
+      MENTOR <span className="text-acid bg-black px-1.5">AI</span>
     </button>
 
     {/* NAV LINKS */}
