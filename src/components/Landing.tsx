@@ -64,31 +64,43 @@ export function Landing({ onCareer, onGuide, onScheme }: LandingProps) {
   </div>
 
 </div>
-      <div className="programs-strip flex border-b-[1.5px] border-pb overflow-x-auto md:flex-col">
-        {[
-          { type: "Full Platform", name: "Career Mentor", fn: onCareer, color: "text-ch" },
-          { type: "Stream & College", name: "Post-12th Guide", fn: onGuide, color: "text-poppy" },
-          { type: "Government Support", name: "Scheme Finder", fn: onScheme, color: "text-royal" },
-          { type: "Inside Career", name: "Peer Matching", fn: onCareer, color: "text-ch" },
-          { type: "Inside Career", name: "AI Mock Interview", fn: onCareer, color: "text-ch" },
-        ].map((p, i) => (
-          <div
-            key={i}
-            className={`prog-item flex-1 min-w-[160px] p-5 px-6 border-r-[1.5px] border-pb cursor-pointer transition-colors relative overflow-hidden bg-cream hover:bg-white md:border-r-0 md:border-b-[1.5px] group ${p.color}`}
-            onClick={p.fn}
-          >
-            <div className={`prog-type font-display text-[10px] font-bold tracking-[0.18em] uppercase mb-1 ${p.color === 'text-ch' ? 'text-mid' : 'opacity-55'}`}>
-              {p.type}
-            </div>
-            <div className="prog-name font-display text-xl font-black uppercase tracking-[0.04em] leading-none">
-              {p.name}
-            </div>
-            <span className="prog-arrow text-base mt-2 opacity-0 transition-all block group-hover:opacity-100 group-hover:translate-x-[3px] group-hover:translate-y-[-3px]">↗</span>
-            <div className="absolute bottom-0 left-0 h-[3px] w-0 transition-[width] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] bg-current group-hover:w-full" />
-          </div>
-        ))}
-      </div>
-
+ <div className="programs-strip mb-10 flex border-b-[1.5px] border-slate-300 overflow-x-auto md:flex-col bg-white">
+    {[
+      { type: "Full Platform", name: "Career Mentor", fn: onCareer, color: "text-ch" },
+      { type: "Stream & College", name: "Post-12th Guide", fn: onGuide, color: "text-poppy" },
+      { type: "Government Support", name: "Scheme Finder", fn: onScheme, color: "text-royal" },
+      { type: "Inside Career", name: "Peer Matching", fn: onCareer, color: "text-ch" },
+      { type: "Inside Career", name: "AI Mock Interview", fn: onCareer, color: "text-ch" },
+    ].map((p, i) => (
+      <button
+        key={i}
+        className={`prog-item flex-1 min-w-[160px] px-6 py-7  border-r-[1.5px] border-slate-300 cursor-pointer transition-all duration-300 relative overflow-hidden group md:border-r-0 md:border-b-[1.5px] ${p.color} text-left flex flex-col hover:shadow-md`}
+        onClick={p.fn}
+        type="button"
+      >
+        {/* Type label */}
+        <div className={`prog-type font-display text-[10px] font-bold tracking-[0.18em] uppercase mb-2 transition-colors duration-300 ${p.color === 'text-ch' ? 'text-slate-700' : 'text-slate-500'}`}>
+          {p.type}
+        </div>
+        
+        {/* Program name */}
+        <div className="prog-name font-display text-xl font-black uppercase tracking-[0.04em] leading-none text-slate-900 transition-colors duration-300">
+          {p.name}
+        </div>
+        
+        {/* Explore button - always visible with slight scale */}
+        <div className="prog-arrow flex items-center gap-1.5 text-xs font-bold mt-4 opacity-60 transition-all duration-300 group-hover:opacity-100 group-hover:scale-110 group-hover:translate-x-1 group-hover:-translate-y-1 origin-left">
+          <span>Explore</span>
+          <svg className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M7 7h10v10M7 17L17 7" />
+          </svg>
+        </div>
+        
+        {/* Bottom accent line */}
+        <div className="absolute bottom-0 left-0 h-[3px] w-0 transition-all duration-500 ease-out bg-gradient-to-r from-slate-900 to-slate-700 group-hover:w-full" />
+      </button>
+    ))}
+  </div>
       <Ticker />
 
       <div className="section-block border-b-[1.5px] border-pb px-10 py-[72px] md:px-5 md:py-[52px]">
